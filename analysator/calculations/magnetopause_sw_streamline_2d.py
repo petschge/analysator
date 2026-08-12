@@ -105,7 +105,8 @@ def make_streamlines(vlsvfile, streamline_seeds=None, seeds_n=200, seeds_x0=20*6
 
     # get box coordinates from data
     [xmin, ymin, zmin, xmax, ymax, zmax] = f.get_spatial_mesh_extent()
-    [xsize, ysize, zsize] = f.get_spatial_mesh_size()
+    mesh_size = f.get_spatial_mesh_size()
+    [xsize, ysize, zsize] = mesh_size
 
     cellids = f.read_variable("CellID")
 
