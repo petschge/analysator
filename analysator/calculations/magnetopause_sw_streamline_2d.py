@@ -26,14 +26,14 @@ def interpolate(streamline, x_points):
 
     x_points = np.asarray(x_points, dtype=float)
     if arr.shape[0] == 0:
-        return np.array([x_points, np.full_like(x_points, np.NaN)])
+        return np.array([x_points, np.full_like(x_points, np.nan)])
 
     # set arrays for interpolation
     xp = arr[:,0][::-1]
     zp = arr[:,2][::-1]
 
     # interpolate z coordinates
-    z_points = np.interp(x_points, xp, zp, left=np.NaN, right=np.NaN)
+    z_points = np.interp(x_points, xp, zp, left=np.nan, right=np.nan)
 
     return np.array([x_points, z_points])
 
@@ -42,7 +42,7 @@ def trace_streamline(x0, z0, vx_interp, vz_interp, bounds, length, max_step, n_p
     """Integrates one single streamline forward starting at (x0, z0).
 
         :param x0, z0: starting point, m
-        :param vx_interp, vz_interp: RegularGridInterpolator for the two velocity components (must return NaN outside their grid)
+        :param vx_interp, vz_interp: RegularGridInterpolator for the two velocity components (must return nan outside their grid)
         :param bounds: (xmin, xmax, zmin, zmax) -- valid range of the interpolators, m
         :param length: maximum arc length to integrate, m
         :param max_step: maximum solve_ivp step size, m
@@ -50,7 +50,7 @@ def trace_streamline(x0, z0, vx_interp, vz_interp, bounds, length, max_step, n_p
         :param rtol, atol: solve_ivp error tolerances
         :param min_speed: velocity magnitude (m/s) below which the local flow direction is treated as undefined -- guards against 0/0 in regions of exactly zero velocity (e.g. an inner boundary)
 
-        :returns: (n_points, 3) array of x, y(=0), z points. Points beyond where the streamline left the domain are NaN.
+        :returns: (n_points, 3) array of x, y(=0), z points. Points beyond where the streamline left the domain are nan.
     """
     xmin, xmax, zmin, zmax = bounds
 
@@ -97,7 +97,7 @@ def make_streamlines(vlsvfile, streamline_seeds=None, seeds_n=200, seeds_x0=20*6
         :kwarg rtol, atol: scipy.integrate.solve_ivp error tolerances
         :kwarg min_speed: velocity magnitude (m/s) treated as numerically zero
 
-        :returns: streamlines as numpy array, shape (n_seeds, n_points, 3). Points beyond which a streamline left the simulation domain are NaN.
+        :returns: streamlines as numpy array, shape (n_seeds, n_points, 3). Points beyond which a streamline left the simulation domain are nan.
     """
 
     # bulk file
